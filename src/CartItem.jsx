@@ -10,9 +10,50 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
  
+    function calculateTotalAmount(cart) {
+      let totalCost = 0;
+  
+      // Iterate through each item in the cart
+      for (const item of cart) {
+          // Multiply the quantity by the cost for each item
+          totalCost += item.quantity * item.cost;
+      }
+  
+      return totalCost;
+  }
+  
+  // Example usage:
+  const cart = [
+      { name: 'Plant A', quantity: 2, cost: 10 },
+      { name: 'Plant B', quantity: 3, cost: 15 },
+      // Add more items as needed
+  ];
+  
+  const totalAmount = calculateTotalAmount(cart);
+  console.log(`Total cost of items in the cart: $${totalAmount}`);
+  
   };
 
   const handleContinueShopping = (e) => {
+    // Inside your shopping cart component
+function ShoppingCart({ cartItems, handleContinueShopping }) {
+  // ... other code ...
+
+  const handleContinueShoppingClick = () => {
+      // Call the function passed from the parent component
+      handleContinueShopping();
+      // You can also perform any additional actions here if needed
+  };
+
+  return (
+      <div>
+          {/* Your shopping cart content */}
+          {/* Add a button or link to continue shopping */}
+          <button onClick={handleContinueShoppingClick}>Continue Shopping</button>
+      </div>
+  );
+}
+
    
   };
 
