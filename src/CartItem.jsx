@@ -44,6 +44,9 @@ function ShoppingCart({ cartItems, handleContinueShopping }) {
       handleContinueShopping();
       // You can also perform any additional actions here if needed
   };
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
   return (
       <div>
@@ -60,17 +63,24 @@ function ShoppingCart({ cartItems, handleContinueShopping }) {
 
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity === 1) {
+        dispatch(removeItem(item.id));
+      } else {
+        dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+      }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.id));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return item.quantity * item.cost;
   };
 
   return (
